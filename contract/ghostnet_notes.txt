@@ -1,0 +1,28 @@
+## Deploy
+
+dns_source = 'contract Reg { struct rr { bytes32 hash_split1; bytes32 hash_split2; bytes32 addendum; } function register(bytes32 _name, bytes32 _hash1, bytes32 _hash2, bytes32 _comment) { rrs[_name].hash_split1 = _hash1; rrs[_name].hash_split2 = _hash2; rrs[_name].addendum =  _comment; } function lookup(bytes32 _name) constant returns(bytes32, bytes32, bytes32) { return (rrs[_name].hash_split1, rrs[_name].hash_split2, rrs[_name].addendum); } mapping (bytes32 => rr) rrs; }'
+
+dns_source_compiled = web3.eth.compile.solidity(dns_source);
+
+contract = web3.eth.contract(dns_source_compiled.Reg.info.abiDefinition);
+
+callback = function(e, contract){
+    if(!e) {
+      if(!contract.address) {
+        console.log("Contract transaction send: TransactionHash: " + contract.transactionHash + " waiting to be mined...");
+      } else {
+        console.log("Contract mined!");
+        console.log(contract);
+      }
+    }
+}
+
+initializer =  {from:web3.eth.accounts[0], data: dns_source_compiled.Reg.code, gas: 300000}
+
+Reg = contract.new(initializer, callback);
+
+web3.miner.start(1)
+
+## Usage
+
+Reg.register.sendTransaction(140714483853992465424150381, "146016873813289654287121859983778249055", "9669527999267120028515734950946413543839846", "1111111", {from: eth.accounts[0]});
