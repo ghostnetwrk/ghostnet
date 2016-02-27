@@ -70,8 +70,8 @@ var (
 
 	defaultBootNodes = []*discover.Node{
 		// ETH/DEV Go Bootnodes
-		discover.MustParseNode("enode://90c8fb6cb0175be7af47b58848a9ecd93c7620e528db63e5e5cfaa0c792dea3191b915807d0b07c31cb0e4680b12bb6231125cca19499cc076604262d67afcd5@45.32.236.217:51500"),
-		discover.MustParseNode("enode://7eff7740d0693c3084fc73f6c8fff33cebccb9d5a66ee33b1f3eadbf76843c73df111b97b2d5a47e300539339bfecde5c2b8e744f2522c9934e82c5b01d03b33@45.32.146.169:51500"),
+		discover.MustParseNode("enode://deb98c87368f6eb359f210acd2a60775b9103ddcbe21ce87f8d6864169157dbdfafb1622d582c45dd1e873c4ccc4512e30dbbb0397df208f982dabd9f87a1af1@104.238.172.196:51500"),
+		discover.MustParseNode("enode://7c8f0942ed6ccd816b41d74ff497a340aaef9fc97ff4f1e67829b4813fc78ef98f01c2c7cd5929333074d47e636695eba77c1bd40fbb342c5773fa0ffb6cc814@45.32.158.90:51500"),
 	}
 
 	defaultTestNetBootNodes = []*discover.Node{
